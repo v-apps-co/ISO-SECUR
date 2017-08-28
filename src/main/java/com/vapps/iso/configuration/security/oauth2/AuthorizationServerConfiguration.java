@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 
+import com.vapps.iso.configuration.CORSFilter;
 import com.vapps.iso.configuration.security.userdetails.CustomUserDetailsService;
 
 @Configuration
@@ -29,6 +30,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 	@Override
 	public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
 		oauthServer.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
+		oauthServer.addTokenEndpointAuthenticationFilter(new CORSFilter());
 	}
 
 	@Override
